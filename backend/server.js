@@ -1,45 +1,42 @@
+require('dotenv').config();  // This should be the very first line
+// server.js
 const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
 
-// Set up the express app
 const app = express();
-const port = 1443;
+const port = 3001; // You can change the port if needed
 
 // Allow cross-origin requests
 app.use(cors());
 
-// Define database connection configuration
+// Database configuration
 const config = {
-    user: 'sa',  // Replace with your DB username
-    password: 'rollcorner1214',  // Replace with your DB password
-    server: 'localhost',  // Replace with your DB server
-    database: 'DineAndDash',  // Replace with your DB name
+    user: process.env.DB_USER, // Replace with your DB username
+    password: process.env.DB_PASSWORD, // Replace with your DB password
+    server: process.env.DB_SERVER, // Replace with your DB server
+    database: process.env.DB_DATABASE, // Replace with your DB name
     options: {
-        encrypt: true,  // Use encryption if required
-        trustServerCertificate: true,  // Use this if you're not using a trusted certificate
+        encrypt: true, // Use encryption if required
+        trustServerCertificate: true, // Use this if you're not using a trusted certificate
     },
 };
 
-// Route to fetch schema
-app.get('/api/schema', async (req, res) => {
+// Route to fetch table names
+app.get('/api/tables', async (req, res) => {
     try {
         const pool = await sql.connect(config);
         const result = await pool.request().query(`
-      SELECT t.name AS TableName, c.name AS ColumnName
-      FROM sys.tables AS t
-      INNER JOIN sys.columns AS c ON t.object_id = c.object_id
-      ORDER BY t.name, c.column_id
-    `);
+            SELECT name AS TableName
+            FROM sys.tables
+            ORDER BY name
+        `);
 
-        // Log the result to ensure you're getting data back from the DB
-        console.log('Schema Data:', result.recordset);
-
-        res.json(result.recordset); // Send the data as JSON response
+        res.json(result.recordset); // Send the table names as JSON
     } catch (error) {
-        console.error('Error fetching schema:', error);
+        console.error('Error fetching tables:', error);
         res.status(500).json({
-            message: 'Error fetching schema',
+            message: 'Error fetching table names',
             error: error.message,
         });
     }
@@ -47,5 +44,5 @@ app.get('/api/schema', async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Backend running on port ${port}`);
+    console.log(`Server running on http://localhost:${port}`);
 });

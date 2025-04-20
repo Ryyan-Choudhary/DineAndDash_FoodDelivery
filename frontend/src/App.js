@@ -1,56 +1,55 @@
+// app.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [schema, setSchema] = useState([]);
-  const [error, setError] = useState(null);
+    const [tables, setTables] = useState([]);
+    const [error, setError] = useState(null);
 
-  // Fetch schema from the backend API
-  useEffect(() => {
-    fetch('http://localhost:1443/api/schema')
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => setSchema(data))
-        .catch((error) => {
-          console.error('Error fetching schema:', error);
-          setError('Error fetching schema');
-        });
-  }, []);
+    // Fetch table names from the backend API
+    useEffect(() => {
+        fetch('http://localhost:3001/api/tables')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => setTables(data))
+            .catch((error) => {
+                console.error('Error fetching table names:', error);
+                setError('Error fetching table names');
+            });
+    }, []);
 
-  return (
-      <div className="App">
-        <h1>Dine and Dash - Database Schema</h1>
+    return (
+        <div className="App">
+            <h1>Database Tables</h1>
 
-        {error && <div className="error">{error}</div>}
+            {error && <div className="error">{error}</div>}
 
-        <table>
-          <thead>
-          <tr>
-            <th>Table Name</th>
-            <th>Column Name</th>
-          </tr>
-          </thead>
-          <tbody>
-          {schema.length > 0 ? (
-              schema.map((row, index) => (
-                  <tr key={index}>
-                    <td>{row.TableName}</td>
-                    <td>{row.ColumnName}</td>
-                  </tr>
-              ))
-          ) : (
-              <tr>
-                <td colSpan="2">No data available</td>
-              </tr>
-          )}
-          </tbody>
-        </table>
-      </div>
-  );
+            <table>
+                <thead>
+                <tr>
+                    <th>Table Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {tables.length > 0 ? (
+                    tables.map((table, index) => (
+                        <tr key={index}>
+                            <td>{table.TableName}</td>
+                        </tr>
+                    ))
+                ) : (
+                    <tr>
+                        <td colSpan="1">No tables found</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 export default App;

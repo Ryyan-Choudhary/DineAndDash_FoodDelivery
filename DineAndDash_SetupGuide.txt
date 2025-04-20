@@ -1,0 +1,86 @@
+
+How to Set Up WebStorm for the Project
+
+Prerequisites:
+1. Git: Make sure Git is installed on your machine.
+2. Node.js and npm: You need Node.js to run npm commands. npm comes bundled with Node.js, so installing Node.js will automatically install npm as well.
+
+Steps:
+1. Install Git (if not already installed):
+   - Download Git from the official website: https://git-scm.com/
+   - Follow the installation instructions for your platform.
+
+2. Install Node.js (if not already installed):
+   - Download the latest LTS version of Node.js from https://nodejs.org/
+   - Follow the installation instructions based on your operating system. 
+   - After installation, you can verify if Node.js and npm are installed by running the following commands in your terminal:
+     node -v
+     npm -v
+
+3. Clone the repository:
+   - Create a new folder on your computer where you'd like to work on the project.
+   - Open a terminal in that folder and run:
+     git clone https://github.com/Ryyan-Choudhary/DineAndDash_FoodDelivery.git
+
+4. Open the project in WebStorm:
+   - Open WebStorm and select Open to open the cloned DineAndDash_FoodDelivery folder.
+   - WebStorm will automatically detect and set up the project for you.
+
+5. Install the dependencies for the frontend and backend:
+   - Open a terminal in WebStorm (or use your command prompt) and navigate to the frontend and backend directories.
+
+   For the frontend:
+     cd frontend
+     npm install
+
+   For the backend:
+     cd ../backend
+     npm install
+
+6. Create the .env file in the backend:
+   - In the `backend` folder, create a new file named `.env`
+   - Add the following variables inside it (example values shown):
+
+     DB_USER=your_username  
+     DB_PASSWORD=your_password  
+     DB_NAME=DineAndDash  
+     DB_SERVER=localhost  
+     DB_PORT=1433  
+
+   - Make sure these values match your Microsoft SQL Server setup.
+
+7. Verify SQL Server TCP and Port Settings:
+   - Open SQL Server Configuration Manager.
+   - Navigate to: SQL Server Network Configuration > Protocols for MSSQLSERVER
+   - Ensure TCP/IP is **Enabled**.
+   - Right-click TCP/IP > Properties > IP Addresses tab:
+     - Scroll to the bottom and check the TCP Port (usually `1433`).
+   - Restart SQL Server service if you made changes.
+
+8. Enable SQL Server Authentication and Set Admin Login:
+   - Open SQL Server Management Studio (SSMS).
+   - Right-click the server name in Object Explorer > Properties.
+   - Under "Security", ensure "SQL Server and Windows Authentication mode" is selected.
+   - Click OK, and **restart** the SQL Server.
+
+   - To enable the `sa` account (if disabled):
+     - In Object Explorer, go to Security > Logins.
+     - Right-click on `sa` > Properties.
+     - Set a password and make sure the account is **enabled**.
+     - Click OK.
+
+   - To change the `sa` password:
+     - Right-click on `sa` > Properties > General.
+     - Enter and confirm a new password.
+     - Click OK.
+
+9. Start the backend and frontend:
+   - Once the dependencies are installed and `.env` is set, you can start the servers:
+
+   For the frontend:
+     cd frontend
+     npm start
+
+   For the backend:
+     cd backend
+     npm start

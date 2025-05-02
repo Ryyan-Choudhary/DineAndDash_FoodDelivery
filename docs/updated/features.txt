@@ -1,0 +1,15 @@
+procedure
+join
+order by
+like
+having
+where
+select
+update
+delete
+insert
+nested
+left join
+views
+count
+group by

@@ -4,6 +4,7 @@ const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
 const menuRoutes = require('./routes/menu');
+const checkoutRoutes = require('./routes/checkout');
 
 const app = express();
 const port = 3001; // You can change the port if needed
@@ -26,6 +27,8 @@ const config = {
 
 // Menu routes
 app.use('/api/menu', menuRoutes);
+// Checkout routes
+app.use('/api/checkout', checkoutRoutes);
 
 // Root route redirects to menu page
 app.get('/', (req, res) => {

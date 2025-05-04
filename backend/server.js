@@ -3,12 +3,14 @@ require('dotenv').config();  // This should be the very first line
 const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
+const menuRoutes = require('./routes/menu');
 
 const app = express();
 const port = 3001; // You can change the port if needed
 
 // Allow cross-origin requests
 app.use(cors());
+app.use(express.json()); // Add this line to parse JSON bodies
 
 // Database configuration
 const config = {
@@ -22,24 +24,12 @@ const config = {
     },
 };
 
-// Route to fetch table names
-app.get('/api/tables', async (req, res) => {
-    try {
-        const pool = await sql.connect(config);
-        const result = await pool.request().query(`
-            SELECT name AS TableName
-            FROM sys.tables
-            ORDER BY name
-        `);
+// Menu routes
+app.use('/api/menu', menuRoutes);
 
-        res.json(result.recordset); // Send the table names as JSON
-    } catch (error) {
-        console.error('Error fetching tables:', error);
-        res.status(500).json({
-            message: 'Error fetching table names',
-            error: error.message,
-        });
-    }
+// Root route redirects to menu page
+app.get('/', (req, res) => {
+    res.redirect('/menu');
 });
 
 // Start the server

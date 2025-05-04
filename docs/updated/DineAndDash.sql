@@ -22,8 +22,7 @@ CREATE TABLE DineAndDash_Users (
     password VARCHAR(255) NOT NULL,
     role VARCHAR(20) CHECK (role IN ('Customer', 'RestaurantOwner', 'Rider', 'Admin')) NOT NULL,
     phone VARCHAR(15) UNIQUE NOT NULL CHECK (phone like '[0-9]%[0-9]'),
-    created_at DATETIME DEFAULT GETDATE(),
-	address VARCHAR(255)
+    created_at DATETIME DEFAULT GETDATE()
 );
 
 -- Restaurants Table

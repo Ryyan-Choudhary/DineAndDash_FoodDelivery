@@ -1,125 +1,123 @@
-.manager-container {
+.manage-menu-container {
     min-height: 100vh;
     background-color: #edb9e3;
     padding: 3rem;
 }
 
-.manager-header {
+.manage-menu-header {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-.manager-header h1 {
+.manage-menu-header h1 {
     color: #ff6b35;
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.restaurant-list {
+.menu-content {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
 }
 
-.restaurant-card {
+.menu-section {
     background: white;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
 }
 
-.restaurant-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.restaurant-card h2 {
+.menu-section h2 {
     color: #ff6b35;
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.restaurant-info {
     margin-bottom: 1.5rem;
 }
 
-.info-item {
+.menu-items {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.menu-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
     margin-bottom: 1rem;
+}
+
+.item-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.item-price {
+    color: #ff6b35;
+    font-weight: 600;
     font-size: 1.1rem;
 }
 
-.info-label {
+.item-description {
     color: #666;
-    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
 }
 
-.info-value {
-    color: #333;
-    font-weight: 600;
-}
-
-.action-buttons {
+.item-actions {
     display: flex;
     gap: 1rem;
 }
 
-.edit-button,
-.view-orders-button,
-.delete-button {
+.edit-item-button,
+.delete-item-button {
     flex: 1;
-    padding: 1rem;
+    padding: 0.8rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
-.edit-button {
+.edit-item-button {
     background-color: #4CAF50;
     color: white;
 }
 
-.edit-button:hover {
+.edit-item-button:hover {
     background-color: #45a049;
     transform: translateY(-2px);
 }
 
-.view-orders-button {
-    background-color: #ff6b35;
-    color: white;
-}
-
-.view-orders-button:hover {
-    background-color: #ff8c5a;
-    transform: translateY(-2px);
-}
-
-.delete-button {
+.delete-item-button {
     background-color: #dc3545;
     color: white;
 }
 
-.delete-button:hover {
+.delete-item-button:hover {
     background-color: #c82333;
     transform: translateY(-2px);
 }
 
-.add-restaurant-button {
-    display: block;
+.add-item-button {
     width: 100%;
-    max-width: 300px;
-    margin: 2rem auto;
     padding: 1.2rem;
     background-color: #4CAF50;
     color: white;
@@ -128,17 +126,36 @@
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: 600;
-    text-align: center;
-    text-decoration: none;
     transition: all 0.3s ease;
+    margin-top: 1.5rem;
 }
 
-.add-restaurant-button:hover {
+.add-item-button:hover {
     background-color: #45a049;
     transform: translateY(-2px);
 }
 
-.no-restaurants {
+.back-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.no-items {
     text-align: center;
     color: #666;
     font-size: 1.2rem;
@@ -162,15 +179,15 @@
 }
 
 @media (max-width: 768px) {
-    .manager-container {
+    .manage-menu-container {
         padding: 1.5rem;
     }
     
-    .restaurant-list {
-        grid-template-columns: 1fr;
+    .menu-content {
+        gap: 1.5rem;
     }
     
-    .action-buttons {
+    .item-actions {
         flex-direction: column;
     }
-}
+} 

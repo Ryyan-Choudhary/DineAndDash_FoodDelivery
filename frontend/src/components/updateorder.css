@@ -1,29 +1,28 @@
-.manager-container {
+.update-order-container {
     min-height: 100vh;
     background-color: #edb9e3;
     padding: 3rem;
 }
 
-.manager-header {
+.update-order-header {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-.manager-header h1 {
+.update-order-header h1 {
     color: #ff6b35;
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.restaurant-list {
+.order-list {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
 }
 
-.restaurant-card {
+.order-card {
     background: white;
     border-radius: 12px;
     padding: 2rem;
@@ -31,50 +30,97 @@
     transition: transform 0.3s ease;
 }
 
-.restaurant-card:hover {
+.order-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-.restaurant-card h2 {
-    color: #ff6b35;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.restaurant-info {
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
 }
 
-.info-item {
+.order-header h2 {
+    color: #ff6b35;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.order-status {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.order-details {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.order-detail {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
-    margin-bottom: 1rem;
     font-size: 1.1rem;
 }
 
-.info-label {
+.detail-label {
     color: #666;
     font-weight: 500;
 }
 
-.info-value {
+.detail-value {
     color: #333;
     font-weight: 600;
 }
 
-.action-buttons {
-    display: flex;
-    gap: 1rem;
+.order-items {
+    margin-top: 1.5rem;
 }
 
-.edit-button,
-.view-orders-button,
-.delete-button {
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.item-quantity {
+    color: #666;
+}
+
+.item-price {
+    color: #ff6b35;
+    font-weight: 600;
+}
+
+.status-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.status-button {
     flex: 1;
     padding: 1rem;
     border: none;
@@ -85,60 +131,47 @@
     transition: all 0.3s ease;
 }
 
-.edit-button {
+.status-button.accept {
     background-color: #4CAF50;
     color: white;
 }
 
-.edit-button:hover {
+.status-button.accept:hover {
     background-color: #45a049;
     transform: translateY(-2px);
 }
 
-.view-orders-button {
-    background-color: #ff6b35;
-    color: white;
-}
-
-.view-orders-button:hover {
-    background-color: #ff8c5a;
-    transform: translateY(-2px);
-}
-
-.delete-button {
+.status-button.reject {
     background-color: #dc3545;
     color: white;
 }
 
-.delete-button:hover {
+.status-button.reject:hover {
     background-color: #c82333;
     transform: translateY(-2px);
 }
 
-.add-restaurant-button {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 2rem auto;
-    padding: 1.2rem;
+.back-button {
+    display: inline-block;
+    padding: 1rem 2rem;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    text-align: center;
     text-decoration: none;
     transition: all 0.3s ease;
+    margin-bottom: 2rem;
 }
 
-.add-restaurant-button:hover {
+.back-button:hover {
     background-color: #45a049;
     transform: translateY(-2px);
 }
 
-.no-restaurants {
+.no-orders {
     text-align: center;
     color: #666;
     font-size: 1.2rem;
@@ -162,15 +195,11 @@
 }
 
 @media (max-width: 768px) {
-    .manager-container {
+    .update-order-container {
         padding: 1.5rem;
     }
     
-    .restaurant-list {
-        grid-template-columns: 1fr;
-    }
-    
-    .action-buttons {
+    .status-buttons {
         flex-direction: column;
     }
-}
+} 

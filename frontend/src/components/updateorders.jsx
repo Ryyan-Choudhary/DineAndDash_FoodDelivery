@@ -154,11 +154,11 @@ const UpdateOrderPage = () => {
                         {order.status || 'Unknown'}
                     </span>
                 </div>
-            </div>
+                        </div>
 
             <div className="status-update-section">
                 <h3>Update Order Status</h3>
-                <select 
+                                <select
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
                     className="status-select"

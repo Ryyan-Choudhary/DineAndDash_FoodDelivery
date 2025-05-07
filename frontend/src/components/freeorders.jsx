@@ -28,12 +28,12 @@ function FreeOrdersPage() {
     const fetchOrders = async () => {
         try {
             const response = await axios.get('http://localhost:3001/api/rider/freeOrders');
-            setOrders(response.data);
-            setLoading(false);
+                setOrders(response.data);
+                setLoading(false);
         } catch (error) {
-            console.error("Error fetching free orders:", error);
+                console.error("Error fetching free orders:", error);
             setError("Failed to load orders. Please try again.");
-            setLoading(false);
+                setLoading(false);
         }
     };
 
@@ -52,7 +52,7 @@ function FreeOrdersPage() {
             fetchOrders();
             
             // Navigate to update order page
-            navigate(`/update-order/${orderId}`);
+        navigate(`/update-order/${orderId}`);
         } catch (error) {
             console.error("Error picking up order:", error);
             setError("Failed to pick up order. Please try again.");

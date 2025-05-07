@@ -1,15 +1,15 @@
-.manager-container {
+.restaurant-owner-container {
     min-height: 100vh;
     background-color: #edb9e3;
     padding: 3rem;
 }
 
-.manager-header {
+.restaurant-owner-header {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-.manager-header h1 {
+.restaurant-owner-header h1 {
     color: #ff6b35;
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -73,8 +73,7 @@
 }
 
 .edit-button,
-.view-orders-button,
-.delete-button {
+.view-orders-button {
     flex: 1;
     padding: 1rem;
     border: none;
@@ -102,16 +101,6 @@
 
 .view-orders-button:hover {
     background-color: #ff8c5a;
-    transform: translateY(-2px);
-}
-
-.delete-button {
-    background-color: #dc3545;
-    color: white;
-}
-
-.delete-button:hover {
-    background-color: #c82333;
     transform: translateY(-2px);
 }
 
@@ -162,15 +151,11 @@
 }
 
 @media (max-width: 768px) {
-    .manager-container {
+    .restaurant-owner-container {
         padding: 1.5rem;
     }
     
     .restaurant-list {
         grid-template-columns: 1fr;
     }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-}
+} 

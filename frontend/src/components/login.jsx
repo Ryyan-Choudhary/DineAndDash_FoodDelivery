@@ -129,16 +129,7 @@ const Login = () => {
   // Add role-specific form rendering
   const renderRoleSpecificFields = () => {
     if (formData.role === 'CUSTOMER') {
-      return (
-        <div className="role-info">
-          <p>As a customer, you can:</p>
-          <ul>
-            <li>Search and browse restaurants</li>
-            <li>Place food orders</li>
-            <li>Track your order status</li>
-          </ul>
-        </div>
-      );
+      return null;
     }
     return null;
   };

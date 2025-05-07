@@ -1,0 +1,253 @@
+/* src/pages/UpdateOrderPage.css */
+.update-order-page {
+    background-color: #f9f6ff;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.update-header {
+    text-align: center;
+    background-color: #ff7f50;
+    color: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.update-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-info {
+    margin-bottom: 20px;
+}
+
+.order-info p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.update-form label {
+    font-size: 1.1rem;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.update-form select {
+    padding: 8px;
+    font-size: 1rem;
+    border: 2px solid #6a0dad;
+    border-radius: 5px;
+    margin-top: 5px;
+    outline: none;
+}
+
+.update-form button {
+    padding: 10px 15px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.update-form button:hover {
+    background-color: #e66f3d;
+}
+
+.loader {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #666;
+}
+
+.update-order-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.back-button:hover {
+    color: #333;
+}
+
+.order-details {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #333;
+    font-weight: 600;
+}
+
+.status-update-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.update-status-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.update-status-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.update-status-btn:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.payment-update-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.payment-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.payment-complete-btn,
+.payment-fail-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.payment-complete-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.payment-fail-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.payment-complete-btn:hover {
+    background-color: #45a049;
+}
+
+.payment-fail-btn:hover {
+    background-color: #da190b;
+}
+
+/* Status badges */
+.status-placed {
+    color: #2196F3;
+}
+
+.status-preparing {
+    color: #FF9800;
+}
+
+.status-picked-up {
+    color: #9C27B0;
+}
+
+.status-out-for-delivery {
+    color: #E91E63;
+}
+
+.status-delivered {
+    color: #4CAF50;
+}
+
+.status-cancelled {
+    color: #f44336;
+}
+
+/* Payment status badges */
+.payment-pending {
+    color: #FF9800;
+}
+
+.payment-completed {
+    color: #4CAF50;
+}
+
+.payment-failed {
+    color: #f44336;
+}
+
+.error-message {
+    color: #f44336;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}

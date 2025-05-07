@@ -1,0 +1,36 @@
+.tables-page {
+    padding: 40px;
+    background: linear-gradient(to right, #ff9800, #e1bee7); /* orange to light purple */
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.tables-list {
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+    color: #333;
+    width: 60%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.tables-list th, .tables-list td {
+    border: 1px solid #ddd;
+    padding: 12px 20px;
+}
+
+.tables-list th {
+    background-color: #ff9800;
+    color: white;
+}
+
+.tables-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

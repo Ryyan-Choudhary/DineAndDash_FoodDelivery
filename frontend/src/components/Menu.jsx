@@ -1,31 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
-import { useNavigate } from 'react-router-dom';
+import './menu.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Menu = () => {
     const [menuItems, setMenuItems] = useState([]);
+    const [restaurant, setRestaurant] = useState(null);
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const { restaurantId } = useParams();
 
     useEffect(() => {
-        const fetchMenuItems = async () => {
+        const fetchRestaurantAndMenu = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/menu/1');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Fetch restaurant details
+                const restaurantResponse = await fetch(`http://localhost:3001/api/restaurants/${restaurantId}`);
+                if (!restaurantResponse.ok) {
+                    throw new Error(`HTTP error! status: ${restaurantResponse.status}`);
                 }
-                const data = await response.json();
-                setMenuItems(data);
+                const restaurantData = await restaurantResponse.json();
+                setRestaurant(restaurantData);
+
+                // Fetch menu items
+                const menuResponse = await fetch(`http://localhost:3001/api/menu/${restaurantId}`);
+                if (!menuResponse.ok) {
+                    throw new Error(`HTTP error! status: ${menuResponse.status}`);
+                }
+                const menuData = await menuResponse.json();
+                setMenuItems(menuData);
                 setLoading(false);
             } catch (error) {
-                console.error('Error fetching menu items:', error);
+                console.error('Error fetching data:', error);
                 setLoading(false);
             }
         };
 
-        fetchMenuItems();
-    }, []);
+        fetchRestaurantAndMenu();
+    }, [restaurantId]);
 
     const addToCart = (item) => {
         setCart(prevCart => {
@@ -56,30 +67,73 @@ const Menu = () => {
     };
 
     const handleCheckout = () => {
+        console.log('Checkout button clicked'); // Debug log
+        console.log('Current cart:', cart); // Debug log
+
+        if (cart.length === 0) {
+            console.log('Cart is empty'); // Debug log
+            alert('Your cart is empty!');
+            return;
+        }
+
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        navigate('/checkout', {
-            state: {
-                cartItems: cart,
-                total: total
-            }
-        });
+        const checkoutData = {
+            cartItems: cart,
+            total: total,
+            restaurantId: restaurantId,
+            restaurantName: restaurant?.name
+        };
+
+        console.log('Attempting to navigate to checkout with data:', checkoutData); // Debug log
+        
+        try {
+            navigate('/checkout', { 
+                state: checkoutData,
+                replace: false
+            });
+            console.log('Navigation completed'); // Debug log
+        } catch (error) {
+            console.error('Navigation error:', error); // Debug log
+        }
     };
 
     if (loading) {
         return <div className="menu-container">Loading...</div>;
     }
 
+    if (!restaurant) {
+        return <div className="menu-container">Restaurant not found</div>;
+    }
+
     return (
         <div className="menu-container">
-            <h1 className="menu-header">Restaurant Menu</h1>
+            <div className="restaurant-header">
+                <h1>{restaurant.name}</h1>
+                <p className="restaurant-info">
+                    <span>{restaurant.location}</span>
+                    {restaurant.cuisine_type && (
+                        <span className="cuisine-tag">{restaurant.cuisine_type}</span>
+                    )}
+                </p>
+            </div>
+
             <div className="menu-content">
                 <div className="menu-items">
                     {menuItems.map(item => (
                         <div key={item.item_id} className="menu-item">
-                            <h3>{item.name}</h3>
-                            <p>{item.description}</p>
-                            <p>${item.price.toFixed(2)}</p>
-                            <button onClick={() => addToCart(item)}>Add to Cart</button>
+                            {item.image_url && (
+                                <img 
+                                    src={item.image_url} 
+                                    alt={item.name}
+                                    className="menu-item-image"
+                                />
+                            )}
+                            <div className="menu-item-details">
+                                <h3>{item.name}</h3>
+                                <p>{item.description}</p>
+                                <p className="price">${item.price.toFixed(2)}</p>
+                                <button onClick={() => addToCart(item)}>Add to Cart</button>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -106,7 +160,14 @@ const Menu = () => {
                                 <strong>Total:</strong>
                                 <strong>${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</strong>
                             </div>
-                            <button className="checkout" onClick={handleCheckout}>
+                            <button 
+                                className="checkout" 
+                                onClick={() => {
+                                    console.log('Checkout button clicked directly'); // Debug log
+                                    handleCheckout();
+                                }}
+                                disabled={cart.length === 0}
+                            >
                                 Proceed to Checkout
                             </button>
                         </>

@@ -32,7 +32,6 @@ CREATE TABLE DineAndDash_Restaurants (
     name VARCHAR(100) NOT NULL,
     location varchar(255) NOT NULL,
     cuisine_type VARCHAR(50),
-    rating DECIMAL(3,2) DEFAULT 0.0 CHECK (rating between 1.0 and 5.0),
     image_url VARCHAR(255),
     FOREIGN KEY (owner_id) REFERENCES DineAndDash_Users(user_id) ON DELETE NO ACTION
 );

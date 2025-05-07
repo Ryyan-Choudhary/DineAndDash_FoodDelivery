@@ -1,1 +1,122 @@
- 
+/* Menu Styles */
+.menu-container {
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ff6b35; /* Orange */
+}
+
+.menu-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.menu-item {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item h3 {
+    color: #6c63ff; /* Light purple */
+    margin-bottom: 0.5rem;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.menu-item button {
+    background-color: #ff6b35; /* Orange */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.menu-item button:hover {
+    background-color: #ff8c5a; /* Lighter orange */
+}
+
+.cart {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+.cart h3 {
+    color: #6c63ff; /* Light purple */
+    margin-bottom: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item button {
+    background-color: #ff6b35; /* Orange */
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.cart button.checkout {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(108, 99, 255, 0.2);
+}
+
+.cart button.checkout:hover {
+    background-color: #7d75ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 99, 255, 0.3);
+}
+
+.cart button.checkout:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(108, 99, 255, 0.2);
+} 

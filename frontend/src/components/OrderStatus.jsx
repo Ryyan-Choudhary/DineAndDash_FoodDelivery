@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import '../App.css';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import './orderstatus.css';
 
 const OrderStatus = () => {
     const [orderStatus, setOrderStatus] = useState(null);
+    const [paymentStatus, setPaymentStatus] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [pulse, setPulse] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    const orderId = location.state?.orderId;
+    const { orderId: urlOrderId } = useParams();
+    const orderId = location.state?.orderId || urlOrderId;
 
     useEffect(() => {
         if (!orderId) {
-            navigate('/menu');
+            navigate('/');
             return;
         }
 
@@ -25,6 +27,14 @@ const OrderStatus = () => {
                 }
                 const data = await response.json();
                 setOrderStatus(data);
+                
+                // Fetch payment status
+                const paymentResponse = await fetch(`http://localhost:3001/api/payments/${orderId}`);
+                if (paymentResponse.ok) {
+                    const paymentData = await paymentResponse.json();
+                    setPaymentStatus(paymentData);
+                }
+                
                 setLoading(false);
                 setPulse(true);
                 setTimeout(() => setPulse(false), 1000);
@@ -84,6 +94,19 @@ const OrderStatus = () => {
         }
     };
 
+    const getPaymentStatusColor = (status) => {
+        switch (status) {
+            case 'Completed':
+                return '#28a745'; // Green
+            case 'Pending':
+                return '#ffc107'; // Yellow
+            case 'Failed':
+                return '#dc3545'; // Red
+            default:
+                return '#6c757d'; // Gray
+        }
+    };
+
     if (loading) {
         return <div className="order-status-container">Loading order status...</div>;
     }
@@ -126,6 +149,23 @@ const OrderStatus = () => {
                         <span className="detail-label">Delivery Address:</span>
                         <span className="detail-value">{orderStatus.delivery_address}</span>
                     </div>
+                    {paymentStatus && (
+                        <>
+                            <div className="order-detail">
+                                <span className="detail-label">Payment Method:</span>
+                                <span className="detail-value">{paymentStatus.payment_method}</span>
+                            </div>
+                            <div className="order-detail">
+                                <span className="detail-label">Payment Status:</span>
+                                <span 
+                                    className="detail-value payment-status"
+                                    style={{ color: getPaymentStatusColor(paymentStatus.payment_status) }}
+                                >
+                                    {paymentStatus.payment_status}
+                                </span>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {orderStatus.status !== 'Delivered' && orderStatus.status !== 'Cancelled' && !orderStatus.rider_id && (

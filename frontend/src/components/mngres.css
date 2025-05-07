@@ -1,0 +1,204 @@
+.manage-restaurant-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.restaurant-header h1 {
+    color: #333;
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.edit-button,
+.delete-button,
+.back-button,
+.save-button,
+.cancel-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #2196F3;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.back-button {
+    background-color: #757575;
+    color: white;
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #757575;
+    color: white;
+}
+
+.edit-button:hover { background-color: #1976D2; }
+.delete-button:hover { background-color: #d32f2f; }
+.back-button:hover { background-color: #616161; }
+.save-button:hover { background-color: #45a049; }
+.cancel-button:hover { background-color: #616161; }
+
+.edit-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.restaurant-details {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.restaurant-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.details-content {
+    flex: 1;
+}
+
+.details-content h2 {
+    color: #333;
+    margin: 0 0 1rem 0;
+}
+
+.location,
+.cuisine {
+    color: #666;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.description {
+    color: #555;
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    color: #666;
+}
+
+.loading,
+.error {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: #f44336;
+}
+
+@media (max-width: 768px) {
+    .manage-restaurant-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .restaurant-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .restaurant-details {
+        flex-direction: column;
+    }
+
+    .restaurant-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .edit-button,
+    .delete-button,
+    .back-button,
+    .save-button,
+    .cancel-button {
+        width: 100%;
+    }
+}

@@ -1,6 +1,35 @@
+body {
+    background-color: #C1D7AE; /* Very light purple */
+}
+
+/* Return Button Styles */
+.return-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+
+.return-button:hover {
+    background-color: #e05a2a;
+}
+
+.order-status-container {
+    position: relative;
+    padding-top: 60px; /* Add space for the button */
+}
+
 .placed-orders-container {
     min-height: 100vh;
-    background-color: #edb9e3;
+    background-color: #f5f5f5;
     padding: 3rem;
 }
 

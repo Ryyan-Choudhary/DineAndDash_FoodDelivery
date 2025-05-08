@@ -35,7 +35,7 @@ function Searchres() {
 
     const handleViewOrders = () => {
         console.log('Navigating to placed orders...'); // Debug log
-        navigate('/placed-orders', { replace: true });
+        navigate('/placed-orders');
     };
 
     const filteredRestaurants = restaurants.filter((restaurant) => {

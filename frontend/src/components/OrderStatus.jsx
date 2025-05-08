@@ -27,14 +27,14 @@ const OrderStatus = () => {
                 }
                 const data = await response.json();
                 setOrderStatus(data);
-                
+
                 // Fetch payment status
                 const paymentResponse = await fetch(`http://localhost:3001/api/payments/${orderId}`);
                 if (paymentResponse.ok) {
                     const paymentData = await paymentResponse.json();
                     setPaymentStatus(paymentData);
                 }
-                
+
                 setLoading(false);
                 setPulse(true);
                 setTimeout(() => setPulse(false), 1000);
@@ -51,6 +51,10 @@ const OrderStatus = () => {
 
         fetchOrderStatus();
     }, [orderId, navigate]);
+
+    const handleReturnClick = () => {
+        navigate('/searchres');
+    };
 
     const handleCancelOrder = async () => {
         try {
@@ -117,6 +121,13 @@ const OrderStatus = () => {
 
     return (
         <div className="order-status-container">
+            <button
+                className="return-button"
+                onClick={handleReturnClick}
+            >
+                Return to Restaurants
+            </button>
+
             <h1>Order Status</h1>
             {error && (
                 <div className="error-message">
@@ -126,14 +137,14 @@ const OrderStatus = () => {
             <div className="order-status-card">
                 <div className="order-status-header">
                     <h2>Order #{orderStatus.order_id}</h2>
-                    <span 
+                    <span
                         className={`order-status-badge ${pulse ? 'pulse' : ''}`}
                         style={{ backgroundColor: getStatusColor(orderStatus.status) }}
                     >
                         {orderStatus.status}
                     </span>
                 </div>
-                
+
                 <div className="order-details">
                     <div className="order-detail">
                         <span className="detail-label">Total Amount:</span>
@@ -157,7 +168,7 @@ const OrderStatus = () => {
                             </div>
                             <div className="order-detail">
                                 <span className="detail-label">Payment Status:</span>
-                                <span 
+                                <span
                                     className="detail-value payment-status"
                                     style={{ color: getPaymentStatusColor(paymentStatus.payment_status) }}
                                 >
@@ -169,7 +180,7 @@ const OrderStatus = () => {
                 </div>
 
                 {orderStatus.status !== 'Delivered' && orderStatus.status !== 'Cancelled' && !orderStatus.rider_id && (
-                    <button 
+                    <button
                         className="cancel-order-btn"
                         onClick={handleCancelOrder}
                     >
@@ -181,4 +192,4 @@ const OrderStatus = () => {
     );
 };
 
-export default OrderStatus; 
+export default OrderStatus;

@@ -1,6 +1,10 @@
+body {
+    background-color: #C1D7AE; /* Very light purple */
+}
+
 .restaurant-select-container {
     min-height: 100vh;
-    background-color: #edb9e3;
+    background-color: #f5f5f5;
     padding: 3rem;
 }
 

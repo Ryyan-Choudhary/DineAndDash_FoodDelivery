@@ -1,3 +1,7 @@
+body {
+    background-color: #C1D7AE; /* Very light purple */
+}
+
 .resowner-container {
     max-width: 1200px;
     margin: 0 auto;

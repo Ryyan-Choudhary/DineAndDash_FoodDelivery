@@ -1,8 +1,12 @@
+body {
+    background-color: #C1D7AE; /* Very light purple */
+}
+
 /* Menu Styles */
 .menu-container {
     min-height: 100vh;
     padding: 3rem;
-    background-color: #edb9e3;
+    background-color: #f5f5f5;
 }
 
 .menu-header {
